@@ -119,7 +119,6 @@ public class Acceleration {
 
         public static int t;
 
-
         {
             t = 0;
         }
