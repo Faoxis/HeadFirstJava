@@ -26,7 +26,7 @@ public class SimpleGui1B implements ActionListener { // Обязательное
         // Передоваемый объект ОБЯЗАН быть объектом класса реализуемого ActionListener.
 
         frame.getContentPane().add(button);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         frame.setSize(300, 300);
         frame.setVisible(true);
     }
@@ -35,6 +35,7 @@ public class SimpleGui1B implements ActionListener { // Обязательное
     // Фактически, тело этого метода и является программа, которая выполняется при нажатии на кнопку.
     public void actionPerformed(ActionEvent event) {
         button.setText("I've been clicked!");
+        
     }
 
 }
