@@ -13,7 +13,7 @@ import java.io.IOException;
  * Created by Sergei on 05.02.2016.
  */
 public class QuizCardBuilder {
-
+/*
     private JTextArea question;
     private JTextArea answer;
     private ArrayList<QuizCard> cardList;
@@ -40,7 +40,7 @@ public class QuizCardBuilder {
 
         JScrollPane qScroller = new JScrollPane(question);
         qScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        qScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);\
+        qScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         answer = new JTextArea(6, 20);
         answer.setLineWrap(true);
@@ -141,5 +141,5 @@ public class QuizCardBuilder {
             ex.printStackTrace();
         }
     }
-
+*/
 }

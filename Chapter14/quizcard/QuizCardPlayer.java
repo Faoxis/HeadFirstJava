@@ -13,7 +13,7 @@ import java.io.FileReader;
  */
 
 public class QuizCardPlayer {
-
+/*
     private JTextArea display;
     private JTextArea answer;
     private ArrayList<QuizCard> cardList;
@@ -146,5 +146,5 @@ public class QuizCardPlayer {
         nextButton.setText("Show Answer");
         isShowAnswer = true;
     }
-
+*/
 }
