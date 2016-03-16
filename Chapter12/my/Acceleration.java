@@ -56,8 +56,8 @@ public class Acceleration {
         frame.getContentPane().add(panel, BorderLayout.SOUTH);
         frame.setVisible(true);
 
-        v = 0.001;
-        a = 0.001;
+        v = 0;
+        a = 10;
 
         obj1 = new Coord(50, 50);
         obj2 = new Coord(800, 800);
@@ -66,15 +66,15 @@ public class Acceleration {
 
             if (obj1.y < 800 && obj2.y > 50) {
                 if (start) {
-                    obj1.y = (int) (obj1.y + v * Coord.t + a * Math.pow(Coord.t, 2) / 2.0);
-                    obj2.y = (int) (obj2.y + v * Coord.t - a * Math.pow(Coord.t, 2) / 2.0);
+                    obj1.y = (int) (obj1.y + v * Coord.t + a * Math.pow(0.1 * Coord.t, 2) / 2.0);
+                    obj2.y = (int) (obj2.y + v * Coord.t - a * Math.pow(0.1 * Coord.t, 2) / 2.0);
                     myPanel.repaint();
                     Coord.t++;
                 }
             }
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(10);
             } catch (Exception ex) {
             }
         }
