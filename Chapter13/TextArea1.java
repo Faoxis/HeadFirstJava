@@ -39,6 +39,7 @@ public class TextArea1 implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent event) {
+        System.out.println(text.getText());
         text.append("The button has been clicked\n");
     }
 }

@@ -18,17 +18,22 @@ public class Panel1 {
 
         JPanel panel = new JPanel();
         panel.setBackground(Color.darkGray);
+
+
+        // Изменение диспечера компоновки на новый экземпляр BoxLaout
+        // Конктруктору диспетчера нужно знать какие компоненты он размещает (panel)
+        // и какую ось использовать (BoxLayout.Y_AXIS).
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        JButton button1 = new JButton("Button 1");
+        JButton button1 = new JButton("shock me");
         panel.add(button1);
 
-        JButton button2 = new JButton("Button 2");
+        JButton button2 = new JButton("bliss");
         panel.add(button2);
 
 
         frame.getContentPane().add(BorderLayout.EAST, panel);
-        frame.setSize(200, 200);
+        frame.setSize(250, 200);
         frame.setVisible(true);
     }
 
