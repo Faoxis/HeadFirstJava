@@ -12,7 +12,6 @@ import java.awt.event.*;
 
 public class BeatBox {
 
-
     JPanel mainPanel;
     ArrayList<JCheckBox> checkboxList;
     Sequencer sequencer;
@@ -24,6 +23,7 @@ public class BeatBox {
             "Open Hi-Hat", "Acoustic Snare", "Crash Cymbal", "Hand Clap",
             "Hight Tom", "Hi Bongo", "Maracas", "Whistle", "Low conga",
             "Cowbell", "Vibraslap", "Low-mid Tom", "High Agogo", "Open Hi Conga"};
+
     int[] instruments = {35, 42, 46, 38, 49, 39, 50, 60, 70, 72, 64, 56, 58, 47, 67, 63}; // Барабанные клавиши
 
 
@@ -34,11 +34,17 @@ public class BeatBox {
     public void builGUI() {
         theFrame = new JFrame("Cyber BeatBox");
         theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // По умолчанию на панеле используется FlowLayout, меняем его на BorderLayout
         BorderLayout layout = new BorderLayout();
-        JPanel background = new JPanel(layout);
+        JPanel background = new JPanel(new BorderLayout());
+
+        // Создание пустой границы между краями панели и местом размещения компонентов
         background.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        // Необходимо создать множество чек-боксов и разметить их вертикально.
         checkboxList = new ArrayList<JCheckBox>();
+        // Для .
         Box buttonBox = new Box(BoxLayout.Y_AXIS);
 
         JButton start = new JButton("Start");
@@ -57,6 +63,7 @@ public class BeatBox {
         downTempo.addActionListener(new MyDownTempoListener());
         buttonBox.add(downTempo);
 
+        // Создание Box'a с именами
         Box nameBox = new Box(BoxLayout.Y_AXIS);
         for (int i = 0; i < 16; i++) {
             nameBox.add(new Label(instrumentNames[i]));
@@ -67,17 +74,20 @@ public class BeatBox {
 
         theFrame.getContentPane().add(background);
 
+        // Создаем сетку 16х16
         GridLayout grid = new GridLayout(16, 16);
-        grid.setVgap(1);
-        grid.setVgap(2);
+        grid.setVgap(1); // вертикальный отступ между элементами
+        grid.setHgap(2); // горизонтальный отступ мужду элементами
+        // Создание главное панели с сеткой (выше) и размещение ее по центру
         mainPanel = new JPanel(grid);
         background.add(BorderLayout.CENTER, mainPanel);
+
 
         for (int i = 0; i < 256; i++) {
             JCheckBox c = new JCheckBox();
             c.setSelected(false);
-            checkboxList.add(c);
-            mainPanel.add(c);
+            checkboxList.add(c); // Записываем все чекбоксы в хранилище для них
+            mainPanel.add(c); // и добавляем на основную панель
         }
 
         setUpMidi();
@@ -91,13 +101,16 @@ public class BeatBox {
 
     public void setUpMidi() {
         try {
-            sequencer = MidiSystem.getSequencer();
-            sequencer.open();
-            sequence = new Sequence(Sequence.PPQ, 4);
-            track = sequence.createTrack();
-            sequencer.setTempoInBPM(120);
+            sequencer = MidiSystem.getSequencer(); // Создание ситезатора
+            sequencer.open(); // Откроем его
+
+            sequence = new Sequence(Sequence.PPQ, 4); // Создание последовательности
+            track = sequence.createTrack(); // и дорожки
+
+            sequencer.setTempoInBPM(120); // Устанавливает темп в ударах в минуту.
+
         } catch (Exception e) { e.printStackTrace(); }
-    }
+    } // Конец метода setUpMidi
 
     public void buildTrackAndStart() {
         int[] trackList = null;
@@ -118,7 +131,11 @@ public class BeatBox {
                 } else {
                     trackList[j] = 0;
                 }
+
+                makeTracks(trackList);
+                track.add(makeEvent(176, 1, 127, 0, 16));
             }
+
 
             track.add(makeEvent(192, 9, 1, 0, 15));
 
@@ -127,7 +144,7 @@ public class BeatBox {
                 sequencer.setSequence(sequence);
                 sequencer.setLoopCount(sequencer.LOOP_CONTINUOUSLY);
                 sequencer.start();
-                sequencer.setTempoInBPM(120);
+                sequencer.setTempoInBPM(120); // Устанавливает темп в ударах в минуту.
 
             } catch (Exception e) { e.printStackTrace(); }
 
@@ -184,4 +201,4 @@ public class BeatBox {
         return event;
     }
 
-}
+} // Закрываем класс BeatBox
