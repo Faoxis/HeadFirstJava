@@ -28,7 +28,7 @@ public class Pond implements Serializable {
         }
     }
 
-    public class Duck {
+    public class Duck implements Serializable {
 
     }
 }

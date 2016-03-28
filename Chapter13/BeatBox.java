@@ -44,7 +44,6 @@ public class BeatBox {
 
         // Необходимо создать множество чек-боксов и разметить их вертикально.
         checkboxList = new ArrayList<JCheckBox>();
-        // Для .
         Box buttonBox = new Box(BoxLayout.Y_AXIS);
 
         JButton start = new JButton("Start");
@@ -78,7 +77,7 @@ public class BeatBox {
         GridLayout grid = new GridLayout(16, 16);
         grid.setVgap(1); // вертикальный отступ между элементами
         grid.setHgap(2); // горизонтальный отступ мужду элементами
-        // Создание главное панели с сеткой (выше) и размещение ее по центру
+        // Создание главной панели с сеткой (выше) и размещение ее по центру
         mainPanel = new JPanel(grid);
         background.add(BorderLayout.CENTER, mainPanel);
 
@@ -112,6 +111,7 @@ public class BeatBox {
         } catch (Exception e) { e.printStackTrace(); }
     } // Конец метода setUpMidi
 
+
     public void buildTrackAndStart() {
         int[] trackList = null;
 
@@ -136,7 +136,6 @@ public class BeatBox {
                 track.add(makeEvent(176, 1, 127, 0, 16));
             }
 
-
             track.add(makeEvent(192, 9, 1, 0, 15));
 
             try {
@@ -145,12 +144,10 @@ public class BeatBox {
                 sequencer.setLoopCount(sequencer.LOOP_CONTINUOUSLY);
                 sequencer.start();
                 sequencer.setTempoInBPM(120); // Устанавливает темп в ударах в минуту.
-
             } catch (Exception e) { e.printStackTrace(); }
-
         }
-
     } // Закрыаем buildTrackAndStart
+
 
     public class MyStartListener implements ActionListener  {
         public void actionPerformed(ActionEvent a) {
@@ -202,3 +199,4 @@ public class BeatBox {
     }
 
 } // Закрываем класс BeatBox
+

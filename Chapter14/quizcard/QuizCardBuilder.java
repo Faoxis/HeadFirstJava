@@ -1,4 +1,4 @@
-package Lesson14.quizcard;
+package Chapter14.quizcard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,15 +8,17 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Sergei on 05.02.2016.
  */
 public class QuizCardBuilder {
-/*
+
     private JTextArea question;
     private JTextArea answer;
-    private ArrayList<QuizCard> cardList;
+    private ArrayList cardList;
     private JFrame frame;
 
     public static void main (String[] args) {
@@ -31,6 +33,7 @@ public class QuizCardBuilder {
         // Формируем и выводим на экран GUI
 
         frame = new JFrame("Quiz Card Builder");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel mainPanel = new JPanel();
         Font bigFont = new Font("sanserif", Font.BOLD, 24);
         question = new JTextArea(6, 20);
@@ -52,9 +55,7 @@ public class QuizCardBuilder {
         aScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         JButton nextButton = new JButton("Next Card");
-
         cardList = new ArrayList<QuizCard>();
-
         JLabel  qLabel = new JLabel("Question:");
         JLabel aLabel = new JLabel("Answer:");
 
@@ -67,15 +68,17 @@ public class QuizCardBuilder {
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem newMenuItem = new JMenuItem("New");
+
         JMenuItem saveMenuItem = new JMenuItem("Save");
         newMenuItem.addActionListener(new NewMenuListener());
-
         saveMenuItem.addActionListener(new SaveMenuListener());
+
         fileMenu.add(newMenuItem);
         fileMenu.add(saveMenuItem);
         menuBar.add(fileMenu);
         frame.setJMenuBar(menuBar);
-        frame.setContentPane().add(BorderLayout.CENTER, mainPanel);
+
+        frame.getContentPane().add(BorderLayout.CENTER, mainPanel);
         frame.setSize(500, 600);
         frame.setVisible(true);
     }
@@ -116,7 +119,7 @@ public class QuizCardBuilder {
         }
     }
 
-    private void clearCard(File file) {
+    private void clearCard() {
         question.setText("");
         answer.setText("");
         question.requestFocus();
@@ -129,17 +132,18 @@ public class QuizCardBuilder {
 
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-
-            for (QuizCard card : cardList) {
+            Iterator cardIterator = cardList.iterator();
+            while (cardIterator.hasNext()) {
+                QuizCard card = (QuizCard) cardIterator.next();
                 writer.write(card.getQuestion() + "/");
                 writer.write(card.getAnswer() + "\n");
             }
-
             writer.close();
+
         } catch (IOException ex) {
             System.out.println("couldn't write the cardList out");
             ex.printStackTrace();
         }
     }
-*/
+
 }

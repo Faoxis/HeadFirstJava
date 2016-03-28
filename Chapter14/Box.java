@@ -27,7 +27,10 @@ public class Box implements Serializable {
         myBox.setHeight(20);
 
         try {
+            // Объект FileOutputStream знает как подключиться к файлу (и как создать его).
+            // С помощью контруктора объект записан в байтовом виде
             FileOutputStream fs = new FileOutputStream("foo.ser");
+            // Сериализация объекта
             ObjectOutputStream os = new ObjectOutputStream(fs);
             os.writeObject(myBox);
             os.close();

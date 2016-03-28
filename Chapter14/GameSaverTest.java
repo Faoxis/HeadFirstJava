@@ -1,12 +1,10 @@
-package Lesson14;
+package Chapter14;
 
 import java.io.*;
 
 /**
  * Created by Sergei on 02.02.2016.
  */
-
-import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 
 
@@ -17,6 +15,7 @@ public class GameSaverTest {
         GameCharacter three =  new GameCharacter(120, "Маг", new String[] {"заклинания", "невидимость"});
 
         try {
+            //
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("Game.ser")); // Сериализация
             os.writeObject(one);
             os.writeObject(two);
@@ -34,9 +33,12 @@ public class GameSaverTest {
         three = null;
 
         try {
-            ObjectInputStream is = new ObjectInputStream(new FileInputStream("Game.ser")); // Десериализация
-            GameCharacter newOne = (GameCharacter) is.readObject();
-            GameCharacter newTwo = (GameCharacter) is.readObject();
+
+            // Десериализация.
+            // Если файла Game.ser не существует, то будет выбрашено исключение.
+            ObjectInputStream is   = new ObjectInputStream(new FileInputStream("Game.ser"));
+            GameCharacter newOne   = (GameCharacter) is.readObject();
+            GameCharacter newTwo   = (GameCharacter) is.readObject();
             GameCharacter newThree = (GameCharacter) is.readObject();
 
             is.close();
